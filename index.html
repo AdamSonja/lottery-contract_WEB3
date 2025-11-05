@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lottery DApp</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎰</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎰 Decentralized Lottery</h1>
+            <p class="subtitle">Win up to 10 ETH!</p>
+        </header>
+
+        <div class="wallet-section">
+            <button id="connectWallet" class="btn btn-primary">Connect Wallet</button>
+            <div id="walletInfo" class="wallet-info hidden">
+                <p><strong>Connected:</strong> <span id="userAddress"></span></p>
+                <p><strong>Role:</strong> <span id="userRole"></span></p>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <!-- Lottery Stats -->
+            <div class="card stats-card">
+                <h2>📊 Lottery Stats</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-label">Prize Pool</span>
+                        <span class="stat-value" id="prizePool">0 ETH</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Participants</span>
+                        <span class="stat-value" id="participantCount">0/10</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Entry Fee</span>
+                        <span class="stat-value">1 ETH</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Manager</span>
+                        <span class="stat-value-small" id="managerAddress">Loading...</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Participant Section -->
+            <div class="card participant-card" id="participantSection">
+                <h2>🎫 Enter the Lottery</h2>
+                <p class="info-text">Entry fee is 1 ETH. Maximum 10 participants allowed.</p>
+                <button id="enterLottery" class="btn btn-success btn-large">Enter Lottery (1 ETH)</button>
+                <div id="participantMessage" class="message hidden"></div>
+            </div>
+
+            <!-- Manager Section -->
+            <div class="card manager-card hidden" id="managerSection">
+                <h2>⚙️ Manager Controls</h2>
+                <p class="info-text">Only the manager can perform these actions.</p>
+                <div class="manager-actions">
+                    <button id="selectWinner" class="btn btn-warning btn-large">Select Winner</button>
+                    <button id="refreshBalance" class="btn btn-secondary">Refresh Balance</button>
+                </div>
+                <div id="managerMessage" class="message hidden"></div>
+            </div>
+
+            <!-- Participants List -->
+            <div class="card participants-list-card">
+                <h2>👥 Current Participants</h2>
+                <div id="participantsList" class="participants-list">
+                    <p class="empty-state">No participants yet. Be the first to enter!</p>
+                </div>
+            </div>
+
+            <!-- Recent Winner -->
+            <div class="card winner-card hidden" id="winnerCard">
+                <h2>🏆 Recent Winner</h2>
+                <div id="winnerInfo" class="winner-info"></div>
+            </div>
+        </div>
+
+        <footer>
+            <p>⚠️ For educational purposes only. Always use testnets for development.</p>
+        </footer>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast hidden"></div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay hidden">
+        <div class="spinner"></div>
+        <p>Processing transaction...</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.8.0/dist/web3.min.js"></script>
+    <script src="contractABI.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
